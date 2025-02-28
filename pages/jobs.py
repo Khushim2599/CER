@@ -63,7 +63,7 @@ Aquí puedes encontrar recursos laborales, asistencia con currículums y program
 
 st.header("📌 Job Training Programs" if st.session_state["language"] == "English" else "📌 Programas de capacitación laboral")
 st.markdown("""
-- [Goodwill Job Training](https://www.goodwillng.org/job-training) – Free job training in IT, customer service, healthcare, and more.
+- [Goodwill Job Training](https://goodwillng.org/putting-people-to-work/get-job-training/) – Free job training in IT, customer service, healthcare, and more.
 - [Georgia WorkSource](https://www.worksourceatlanta.org/) – Career coaching, resume building, and job placement assistance.
 """ if st.session_state["language"] == "English" else """
 - [Capacitación Laboral de Goodwill](https://www.goodwillng.org/job-training) – Capacitación gratuita en TI, servicio al cliente, salud y más.
