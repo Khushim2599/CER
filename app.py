@@ -1,7 +1,20 @@
 import streamlit as st
+import json
+import os
 
-# Set up the main page
 st.set_page_config(page_title="Hispanic Career & Education Hub", page_icon="🌍", layout="wide")
+
+# File for storing user credentials
+USER_DATA_FILE = "users.json"
+
+# Load user data from file
+def load_users():
+    if os.path.exists(USER_DATA_FILE):
+        with open(USER_DATA_FILE, "r") as f:
+            return json.load(f)
+    return {}
+
+users = load_users()
 
 # Ensure login before accessing any page
 if "logged_in" not in st.session_state or not st.session_state["logged_in"]:
