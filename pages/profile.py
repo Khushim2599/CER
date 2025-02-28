@@ -21,13 +21,19 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Language Toggle
+# ✅ Language Toggle at the Top of the Page
 if "language" not in st.session_state:
     st.session_state["language"] = "English"
 
-st.sidebar.markdown("### 🌍 Language | Idioma")
-language_toggle = st.sidebar.toggle("English / Español", value=(st.session_state["language"] == "Español"))
-st.session_state["language"] = "Español" if language_toggle else "English"
+toggle_col1, toggle_col2 = st.columns([0.8, 0.2])
+with toggle_col2:
+    language_toggle = st.toggle("English / Español", value=(st.session_state["language"] == "Español"))
+    st.session_state["language"] = "Español" if language_toggle else "English"
+
+# ✅ Welcome Message
+st.markdown('<h1 class="welcome-text">Welcome to Avanza | Bienvenido a Avanza</h1>', unsafe_allow_html=True)
+
+st.title("👤 User Login / Sign Up")
 
 # File for storing user credentials
 USER_DATA_FILE = "users.json"
@@ -55,11 +61,6 @@ users = load_users()  # Load existing users
 # If already logged in, go to home page
 if st.session_state["logged_in"]:
     st.switch_page("app.py")
-
-# ✅ Welcome Message
-st.markdown('<h1 class="welcome-text">Welcome to Avanza | Bienvenido a Avanza</h1>', unsafe_allow_html=True)
-
-st.title("👤 User Login / Sign Up")
 
 # Tabs for Sign-up & Login
 tab1, tab2 = st.tabs(["Sign Up" if st.session_state["language"] == "English" else "Regístrate",
