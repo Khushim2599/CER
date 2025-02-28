@@ -24,23 +24,39 @@ st.image("https://source.unsplash.com/1600x500/?community", use_column_width=Tru
 st.markdown("### Explore Our Resources")
 st.write("Click on any category below to learn more.")
 
+# Custom CSS for larger buttons
+st.markdown("""
+    <style>
+    .big-button {
+        display: block;
+        width: 100%;
+        padding: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 # Create a 2-column layout for the navigation cards
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    if st.button("🔹 Job & Career Help"):
+    if st.markdown('<a href="pages/jobs.py" class="big-button">🔹 Job & Career Help</a>', unsafe_allow_html=True):
         st.switch_page("pages/jobs.py")
 
 with col2:
-    if st.button("📚 Education Resources"):
+    if st.markdown('<a href="pages/education.py" class="big-button">📚 Education Resources</a>', unsafe_allow_html=True):
         st.switch_page("pages/education.py")
 
 with col3:
-    if st.button("⚖️ Legal & Immigration Help"):
+    if st.markdown('<a href="pages/legal.py" class="big-button">⚖️ Legal & Immigration Help</a>', unsafe_allow_html=True):
         st.switch_page("pages/legal.py")
 
 st.markdown("---")
 
 # About Us Section
-if st.button("📢 About Us"):
+if st.button("📢 About Us", key="about_us"):
     st.switch_page("pages/about.py")
