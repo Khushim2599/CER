@@ -3,6 +3,20 @@ import streamlit as st
 # Set up the page
 st.set_page_config(page_title="Hispanic Career & Education Hub", page_icon="🌍", layout="wide")
 
+# Custom CSS for styling 
+st.markdown("""
+    <style>'
+    body {
+        background-color: #f8f9fa;
+    }
+    .main{
+        background-color: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.1);
+    }
+
+
 # Language selection
 lang = st.radio("Choose Language / Elige el idioma", ["English", "Español"])
 
