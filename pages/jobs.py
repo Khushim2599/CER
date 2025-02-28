@@ -7,13 +7,13 @@ st.set_page_config(page_title="Job & Career Help", page_icon="💼")
 if "logged_in" not in st.session_state or not st.session_state["logged_in"]:
     st.switch_page("pages/profile.py")
 
-# ✅ Language Toggle (Switch instead of Button)
+# ✅ Language Toggle (Switch-style button)
 if "language" not in st.session_state:
     st.session_state["language"] = "English"
 
 toggle_col1, toggle_col2 = st.columns([0.8, 0.2])
 with toggle_col2:
-    language_toggle = st.toggle("English / Español", value=(st.session_state["language"] == "Español"))
+    language_toggle = st.toggle("🌍 English / Español", value=(st.session_state["language"] == "Español"))
     st.session_state["language"] = "Español" if language_toggle else "English"
 
 # ✅ Hide sidebar
