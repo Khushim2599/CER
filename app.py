@@ -85,7 +85,7 @@ with col4:
 st.markdown('</div>', unsafe_allow_html=True)
 
 # Welcome Section
-st.markdown('<h1 class="title">Hispanic Career & Education Hub</h1>', unsafe_allow_html=True)
+st.markdown('<h1 class="title">Avanza</h1>', unsafe_allow_html=True)
 st.write("Welcome! This website provides free resources for jobs, education, and legal support for Hispanic immigrants in Atlanta.")
 
 st.image("https://source.unsplash.com/1600x500/?community", use_container_width=True)
