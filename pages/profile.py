@@ -2,17 +2,7 @@ import streamlit as st
 import json
 import os
 
-# Language Toggle
-if "language" not in st.session_state:
-    st.session_state["language"] = "English"
-
-# Language Selection Button
-lang_col1, lang_col2 = st.columns([0.8, 0.2])
-with lang_col2:
-    if st.button("🇪🇸 Español" if st.session_state["language"] == "English" else "🇺🇸 English"):
-        st.session_state["language"] = "Español" if st.session_state["language"] == "English" else "English"
-        st.experimental_rerun()
-
+# ✅ Ensure this is the first command
 st.set_page_config(page_title="Login", page_icon="👤")
 
 # Hide sidebar completely
@@ -59,42 +49,54 @@ users = load_users()  # Load existing users
 if st.session_state["logged_in"]:
     st.switch_page("app.py")
 
-# Welcome Message
-st.markdown('<h1 class="welcome-text">Welcome to CER | Bienvenido a CER</h1>', unsafe_allow_html=True)
+# ✅ Language Toggle
+if "language" not in st.session_state:
+    st.session_state["language"] = "English"
+
+# Language Selection Button
+lang_col1, lang_col2 = st.columns([0.8, 0.2])
+with lang_col2:
+    if st.button("🇪🇸 Español" if st.session_state["language"] == "English" else "🇺🇸 English"):
+        st.session_state["language"] = "Español" if st.session_state["language"] == "English" else "English"
+        st.experimental_rerun()
+
+# ✅ Welcome Message
+st.markdown('<h1 class="welcome-text">Welcome to Avanza | Bienvenido a Avanza</h1>', unsafe_allow_html=True)
 
 st.title("👤 User Login / Sign Up")
 
 # Tabs for Sign-up & Login
-tab1, tab2 = st.tabs(["Sign Up", "Login"])
+tab1, tab2 = st.tabs(["Sign Up" if st.session_state["language"] == "English" else "Regístrate",
+                       "Login" if st.session_state["language"] == "English" else "Iniciar sesión"])
 
-# Sign-up Section
+# ✅ Sign-up Section
 with tab1:
-    st.subheader("Create an Account")
-    new_username = st.text_input("Choose a username:")
-    new_password = st.text_input("Choose a password:", type="password")
-    
-    if st.button("Sign Up"):
+    st.subheader("Create an Account" if st.session_state["language"] == "English" else "Crea una cuenta")
+    new_username = st.text_input("Choose a username:" if st.session_state["language"] == "English" else "Elige un nombre de usuario:")
+    new_password = st.text_input("Choose a password:" if st.session_state["language"] == "English" else "Elige una contraseña:", type="password")
+
+    if st.button("Sign Up" if st.session_state["language"] == "English" else "Regístrate"):
         if new_username and new_password:
             if new_username in users:
-                st.warning("Username already exists! Try a different one.")
+                st.warning("Username already exists! Try a different one." if st.session_state["language"] == "English" else "¡El nombre de usuario ya existe! Prueba con otro.")
             else:
                 users[new_username] = new_password
                 save_users(users)  # Save to file
-                st.success("Account created successfully! You can now log in.")
+                st.success("Account created successfully! You can now log in." if st.session_state["language"] == "English" else "¡Cuenta creada con éxito! Ahora puedes iniciar sesión.")
         else:
-            st.warning("Please fill in both fields.")
+            st.warning("Please fill in both fields." if st.session_state["language"] == "English" else "Por favor, completa ambos campos.")
 
-# Login Section
+# ✅ Login Section
 with tab2:
-    st.subheader("Log In")
-    username = st.text_input("Username:", key="login_username")
-    password = st.text_input("Password:", type="password", key="login_password")
-    
-    if st.button("Log In"):
+    st.subheader("Log In" if st.session_state["language"] == "English" else "Iniciar sesión")
+    username = st.text_input("Username:" if st.session_state["language"] == "English" else "Nombre de usuario:", key="login_username")
+    password = st.text_input("Password:" if st.session_state["language"] == "English" else "Contraseña:", type="password", key="login_password")
+
+    if st.button("Log In" if st.session_state["language"] == "English" else "Iniciar sesión"):
         if username in users and users[username] == password:
             st.session_state["logged_in"] = True
             st.session_state["current_user"] = username
-            st.success(f"Welcome back, {username}!")
+            st.success(f"Welcome back, {username}!" if st.session_state["language"] == "English" else f"¡Bienvenido de nuevo, {username}!")
             st.switch_page("app.py")  # Redirect to home page
         else:
-            st.error("Invalid username or password!")
+            st.error("Invalid username or password!" if st.session_state["language"] == "English" else "¡Usuario o contraseña inválidos!")
