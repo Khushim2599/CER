@@ -1,15 +1,4 @@
 import streamlit as st
-# Language Toggle
-if "language" not in st.session_state:
-    st.session_state["language"] = "English"
-
-# Language Selection Button
-lang_col1, lang_col2 = st.columns([0.8, 0.2])
-with lang_col2:
-    if st.button("🇪🇸 Español" if st.session_state["language"] == "English" else "🇺🇸 English"):
-        st.session_state["language"] = "Español" if st.session_state["language"] == "English" else "English"
-        st.experimental_rerun()
-
 
 st.set_page_config(page_title="Support Your Community", page_icon="🤝")
 
