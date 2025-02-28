@@ -10,12 +10,15 @@ if "logged_in" not in st.session_state or not st.session_state["logged_in"]:
 if "language" not in st.session_state:
     st.session_state["language"] = "English"
 
-# Language Selection Button
+# Language Selection Toggle
 lang_col1, lang_col2 = st.columns([0.8, 0.2])
 with lang_col2:
-    if st.button("🇪🇸 Español" if st.session_state["language"] == "English" else "🇺🇸 English"):
-        st.session_state["language"] = "Español" if st.session_state["language"] == "English" else "English"
-        st.experimental_rerun()
+    toggle_state = st.toggle("Español", value=(st.session_state["language"] == "Español"))
+    if toggle_state:
+        st.session_state["language"] = "Español"
+    else:
+        st.session_state["language"] = "English"
+    st.experimental_rerun()
 
 # Hide sidebar
 st.markdown("""
@@ -31,11 +34,11 @@ st.markdown('<div class="navbar">', unsafe_allow_html=True)
 col1, col2, col3, col4, col5 = st.columns(5)
 
 with col1:
-    if st.button("🏠 Home" if st.session_state["language"] == "English" else "🏠 Inicio"):
+    if st.button("\ud83c\udfe0 Home" if st.session_state["language"] == "English" else "\ud83c\udfe0 Inicio"):
         st.switch_page("app.py")
 
 with col2:
-    if st.button("🔹 Job & Career Help" if st.session_state["language"] == "English" else "🔹 Ayuda para el empleo"):
+    if st.button("\ud83d\udd39 Job & Career Help" if st.session_state["language"] == "English" else "\ud83d\udd39 Ayuda para el empleo"):
         st.switch_page("pages/jobs.py")
 
 with col3:
@@ -52,7 +55,7 @@ with col5:
 
 st.markdown('</div>', unsafe_allow_html=True)
 
-st.title("📚 Education Resources" if st.session_state["language"] == "English" else "📚 Recursos educativos")
+st.title("\ud83d\udcda Education Resources" if st.session_state["language"] == "English" else "\ud83d\udcda Recursos educativos")
 
 st.write("""
 Find free ESL classes, GED programs, and college scholarships.
