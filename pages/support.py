@@ -10,6 +10,13 @@ if "logged_in" not in st.session_state or not st.session_state["logged_in"]:
 if "language" not in st.session_state:
     st.session_state["language"] = "English"
 
+# Language Selection Button
+lang_col1, lang_col2 = st.columns([0.8, 0.2])
+with lang_col2:
+    if st.button("🇪🇸 Español" if st.session_state["language"] == "English" else "🇺🇸 English"):
+        st.session_state["language"] = "Español" if st.session_state["language"] == "English" else "English"
+        st.experimental_rerun()
+
 # Hide sidebar
 st.markdown("""
     <style>
@@ -19,34 +26,32 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Page Title
+# Navigation Bar
+st.markdown('<div class="navbar">', unsafe_allow_html=True)
+col1, col2, col3, col4, col5 = st.columns(5)
+
+with col1:
+    if st.button("🏠 Home" if st.session_state["language"] == "English" else "🏠 Inicio"):
+        st.switch_page("app.py")
+
+with col2:
+    if st.button("🔹 Job & Career Help" if st.session_state["language"] == "English" else "🔹 Ayuda para el empleo"):
+        st.switch_page("pages/jobs.py")
+
+with col3:
+    if st.button("📚 Education Resources" if st.session_state["language"] == "English" else "📚 Recursos educativos"):
+        st.switch_page("pages/education.py")
+
+with col4:
+    if st.button("📢 About Us" if st.session_state["language"] == "English" else "📢 Sobre Nosotros"):
+        st.switch_page("pages/about.py")
+
+st.markdown('</div>', unsafe_allow_html=True)
+
 st.title("🤝 Support Your Community" if st.session_state["language"] == "English" else "🤝 Apoya a tu comunidad")
 
-st.write("Discover and support small Hispanic-owned businesses in your area!" if st.session_state["language"] == "English" else
-         "¡Descubre y apoya a pequeñas empresas hispanas en tu comunidad!")
-
-# Business Categories
-st.header("🍽️ Food & Restaurants" if st.session_state["language"] == "English" else "🍽️ Comida y Restaurantes")
-st.markdown("""
-- [Tacos El Gordo](https://example.com) 🌮
-- [Cuban Delights Bakery](https://example.com) 🥖
-- [Peruvian Taste](https://example.com) 🍗
-""")
-
-st.header("🛍️ Retail & Shopping" if st.session_state["language"] == "English" else "🛍️ Tiendas y Compras")
-st.markdown("""
-- [Hispanic Handcrafts](https://example.com) 🏺
-- [Latina Fashion Store](https://example.com) 👗
-""")
-
-st.header("💇‍♀️ Beauty & Salon" if st.session_state["language"] == "English" else "💇‍♀️ Belleza y Salón")
-st.markdown("""
-- [Maria's Beauty Salon](https://example.com) 💄
-- [Barbería El Rey](https://example.com) ✂️
-""")
-
-st.header("🛠️ Services & Others" if st.session_state["language"] == "English" else "🛠️ Servicios y Otros")
-st.markdown("""
-- [Hispanic Auto Repair](https://example.com) 🚗
-- [Legal Aid for Immigrants](https://example.com) ⚖️
+st.write("""
+Find and support Hispanic-owned businesses in your area.
+""" if st.session_state["language"] == "English" else """
+Encuentra y apoya a empresas hispanas en tu comunidad.
 """)
