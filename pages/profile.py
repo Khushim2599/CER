@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.set_page_config(page_title="Profile", page_icon="👤")
+st.set_page_config(page_title="Login", page_icon="👤")
 
 # Initialize session state for authentication
 if "users" not in st.session_state:
@@ -13,6 +13,8 @@ if "current_user" not in st.session_state:
 # Function for user authentication
 def authenticate(username, password):
     return st.session_state["users"].get(username) == password
+
+st.title("👤 User Login / Sign Up")
 
 # Tabs for Sign-up & Login
 tab1, tab2 = st.tabs(["Sign Up", "Login"])
@@ -44,13 +46,6 @@ with tab2:
             st.session_state["logged_in"] = True
             st.session_state["current_user"] = username
             st.success(f"Welcome back, {username}!")
+            st.switch_page("app.py")  # Redirect to home page
         else:
             st.error("Invalid username or password!")
-
-# If logged in, greet the user
-if st.session_state["logged_in"]:
-    st.write(f"👋 Hello, **{st.session_state['current_user']}**!")
-    if st.button("Log Out"):
-        st.session_state["logged_in"] = False
-        st.session_state["current_user"] = ""
-        st.experimental_rerun()
