@@ -63,9 +63,9 @@ Encuentra y apoya a empresas hispanas en tu comunidad.
 
 st.header("🍽️ Food & Restaurants" if st.session_state["language"] == "English" else "🍽️ Comida y Restaurantes")
 st.markdown("""
-- [Tacos El Gordo](https://example.com) 🌮 – Authentic Mexican tacos.
-- [Cuban Delights Bakery](https://example.com) 🥖 – Fresh Cuban pastries.
-- [Peruvian Taste](https://example.com) 🍗 – Traditional Peruvian dishes.
+- [El Valle](https://www.valleatl.com/) 🌮 – Inventive Mexican cuisine and cocktails
+- [Cuban Delights Bakery](https://example.com) 🥖 – Bakery turning out authentic Mexican baked good.
+- [Panderia Del Valle](https://www.facebook.com/DelValleBakery) 🍗 – Traditional Peruvian dishes.
 """ if st.session_state["language"] == "English" else """
 - [Tacos El Gordo](https://example.com) 🌮 – Auténticos tacos mexicanos.
 - [Cuban Delights Bakery](https://example.com) 🥖 – Pasteles cubanos frescos.
