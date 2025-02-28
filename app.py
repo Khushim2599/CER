@@ -7,6 +7,15 @@ st.set_page_config(page_title="Hispanic Career & Education Hub", page_icon="🌍
 if "logged_in" not in st.session_state or not st.session_state["logged_in"]:
     st.switch_page("pages/profile.py")
 
+# Hide sidebar completely
+st.markdown("""
+    <style>
+        [data-testid="stSidebar"] {
+            display: none;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
 # Apply custom CSS for title and navigation bar
 st.markdown("""
     <style>
