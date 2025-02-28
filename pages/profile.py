@@ -2,6 +2,20 @@ import streamlit as st
 
 st.set_page_config(page_title="Login", page_icon="👤")
 
+# Hide sidebar completely
+st.markdown("""
+    <style>
+        [data-testid="stSidebar"] {
+            display: none;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
+# Welcome Message
+st.markdown("""
+    <h1 style="text-align:center; font-size: 40px;">Welcome to CER | Bienvenido a CER</h1>
+""", unsafe_allow_html=True)
+
 # Initialize session state for authentication
 if "users" not in st.session_state:
     st.session_state["users"] = {}  # Stores usernames & passwords
