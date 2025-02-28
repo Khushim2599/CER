@@ -1,4 +1,6 @@
 import streamlit as st
+import json
+import os
 
 st.set_page_config(page_title="Login", page_icon="👤")
 
@@ -8,25 +10,46 @@ st.markdown("""
         [data-testid="stSidebar"] {
             display: none;
         }
+        .welcome-text {
+            text-align: center;
+            font-size: 40px;
+            font-weight: bold;
+            font-family: 'Georgia', serif;
+            color: #333;
+            margin-bottom: 20px;
+        }
     </style>
 """, unsafe_allow_html=True)
 
-# Welcome Message
-st.markdown("""
-    <h1 style="text-align:center; font-size: 40px;">Welcome to CER | Bienvenido a CER</h1>
-""", unsafe_allow_html=True)
+# File for storing user credentials
+USER_DATA_FILE = "users.json"
 
-# Initialize session state for authentication
-if "users" not in st.session_state:
-    st.session_state["users"] = {}  # Stores usernames & passwords
+# Load user data from file
+def load_users():
+    if os.path.exists(USER_DATA_FILE):
+        with open(USER_DATA_FILE, "r") as f:
+            return json.load(f)
+    return {}
+
+# Save user data to file
+def save_users(users):
+    with open(USER_DATA_FILE, "w") as f:
+        json.dump(users, f)
+
+# Initialize session state variables
 if "logged_in" not in st.session_state:
     st.session_state["logged_in"] = False
 if "current_user" not in st.session_state:
     st.session_state["current_user"] = ""
 
-# Function for user authentication
-def authenticate(username, password):
-    return st.session_state["users"].get(username) == password
+users = load_users()  # Load existing users
+
+# If already logged in, go to home page
+if st.session_state["logged_in"]:
+    st.switch_page("app.py")
+
+# Welcome Message
+st.markdown('<h1 class="welcome-text">Welcome to CER | Bienvenido a CER</h1>', unsafe_allow_html=True)
 
 st.title("👤 User Login / Sign Up")
 
@@ -41,10 +64,11 @@ with tab1:
     
     if st.button("Sign Up"):
         if new_username and new_password:
-            if new_username in st.session_state["users"]:
+            if new_username in users:
                 st.warning("Username already exists! Try a different one.")
             else:
-                st.session_state["users"][new_username] = new_password
+                users[new_username] = new_password
+                save_users(users)  # Save to file
                 st.success("Account created successfully! You can now log in.")
         else:
             st.warning("Please fill in both fields.")
@@ -56,7 +80,7 @@ with tab2:
     password = st.text_input("Password:", type="password", key="login_password")
     
     if st.button("Log In"):
-        if authenticate(username, password):
+        if username in users and users[username] == password:
             st.session_state["logged_in"] = True
             st.session_state["current_user"] = username
             st.success(f"Welcome back, {username}!")
