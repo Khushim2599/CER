@@ -2,7 +2,7 @@ import streamlit as st
 import json
 import os
 
-st.set_page_config(page_title="Hispanic Career & Education Hub", page_icon="🌍", layout="wide")
+st.set_page_config(page_title="Avanza", page_icon="🌍", layout="wide")
 
 # File for storing user credentials
 USER_DATA_FILE = "users.json"
