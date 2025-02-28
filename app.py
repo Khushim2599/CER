@@ -44,7 +44,7 @@ st.markdown('<h2 class="subtitle">Hispanic Career & Education Hub</h2>', unsafe_
 st.write("Welcome! This website provides free resources for jobs, education, and legal support for Hispanic immigrants in Atlanta." if st.session_state["language"] == "English" else
          "¡Bienvenido! Este sitio web proporciona recursos gratuitos para empleo, educación y apoyo legal para inmigrantes hispanos en Atlanta.")
 
-st.image("https://source.unsplash.com/1600x500/?community", use_container_width=True)
+st.image("https://www.morganlewis.com/-/media/images/supplemental/we-are-ml/2021/oct---hispanic-heritage-month/abstraction-floral_1166067862_edit_largetile.jpg?rev=baf85c15d2ee4c07898c4170b6ac85d7&hash=A7A8AE243E1D45BA0C4A6D462D25182C", use_container_width=True)
 
 # Navigation Bar
 st.markdown('<div class="navbar">', unsafe_allow_html=True)
