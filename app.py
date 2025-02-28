@@ -10,12 +10,10 @@ if "logged_in" not in st.session_state or not st.session_state["logged_in"]:
 if "language" not in st.session_state:
     st.session_state["language"] = "English"
 
-# Language Selection Button
-lang_col1, lang_col2 = st.columns([0.8, 0.2])
-with lang_col2:
-    if st.button("🇪🇸 Español" if st.session_state["language"] == "English" else "🇺🇸 English"):
-        st.session_state["language"] = "Español" if st.session_state["language"] == "English" else "English"
-        st.experimental_rerun()
+# Language Toggle Switch
+st.sidebar.markdown("### 🌍 Language | Idioma")
+language_toggle = st.sidebar.toggle("English / Español", value=(st.session_state["language"] == "Español"))
+st.session_state["language"] = "Español" if language_toggle else "English"
 
 # Hide sidebar completely
 st.markdown("""
