@@ -16,58 +16,11 @@ with toggle_col2:
     language_toggle = st.toggle("🌍 English / Español", value=(st.session_state["language"] == "Español"))
     st.session_state["language"] = "Español" if language_toggle else "English"
 
-# ✅ Hide Sidebar
+# ✅ Hide sidebar
 st.markdown("""
     <style>
         [data-testid="stSidebar"] {
             display: none;
-        }
-        .navbar {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-        .navbar button {
-            font-size: 16px;
-            font-weight: bold;
-            padding: 8px 15px;
-            background: #004080;
-            color: white;
-            border-radius: 10px;
-            border: none;
-            cursor: pointer;
-        }
-        .navbar button:hover {
-            background: #0059b3;
-        }
-        .banner-container {
-            width: 100%;
-            height: 250px; /* Increased height */
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
-        .banner-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 0;
-        }
-        .banner-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 24px;
-            font-weight: bold;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
-            background: rgba(0, 0, 0, 0.5);
-            padding: 12px 20px;
-            border-radius: 10px;
-            text-align: center;
-            width: 80%;
         }
     </style>
 """, unsafe_allow_html=True)
@@ -98,21 +51,16 @@ with col5:
 
 st.markdown('</div>', unsafe_allow_html=True)
 
-# ✅ Bigger Banner Image with Text Overlay
-st.markdown('<div class="banner-container">', unsafe_allow_html=True)
-st.markdown(
-    f"""
-    <div class="banner-container">
-        <img src="https://www.morganlewis.com/-/media/images/supplemental/we-are-ml/2021/oct---hispanic-heritage-month/abstraction-floral_1166067862_edit_largetile.jpg?rev=baf85c15d2ee4c07898c4170b6ac85d7&hash=A7A8AE243E1D45BA0C4A6D462D25182C" class="banner-image">
-        <div class="banner-text">
-            {"🔹 Job & Career Help <br> Find job resources, resume assistance, and training programs." if st.session_state["language"] == "English" else "🔹 Ayuda para el empleo <br> Encuentra recursos laborales, asistencia con currículums y programas de capacitación."}
-        </div>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+# ✅ Page Title
+st.title("🔹 Job & Career Help" if st.session_state["language"] == "English" else "🔹 Ayuda para el empleo")
 
-# ✅ Job Training Programs
+# ✅ Content with Dynamic Language Switching
+st.write("""
+Here you can find job resources, resume assistance, and training programs.
+""" if st.session_state["language"] == "English" else """
+Aquí puedes encontrar recursos laborales, asistencia con currículums y programas de capacitación.
+""")
+
 st.header("📌 Job Training Programs" if st.session_state["language"] == "English" else "📌 Programas de capacitación laboral")
 st.markdown("""
 - [Goodwill Job Training](https://goodwillng.org/putting-people-to-work/get-job-training/) – Free job training in IT, customer service, healthcare, and more.
@@ -122,7 +70,6 @@ st.markdown("""
 - [Georgia WorkSource](https://www.worksourceatlanta.org/) – Coaching profesional, creación de currículums y asistencia en colocación laboral.
 """)
 
-# ✅ Resume Assistance
 st.header("📝 Resume Assistance" if st.session_state["language"] == "English" else "📝 Asistencia con currículums")
 st.markdown("""
 - [Resume Templates (Canva)](https://www.canva.com/resumes/templates/) – Free professional resume templates.
@@ -132,7 +79,6 @@ st.markdown("""
 - [Ayuda con Currículums en la Biblioteca de Atlanta](https://www.fulcolibrary.org/) – Talleres gratuitos sobre creación de currículums.
 """)
 
-# ✅ Job Search Websites
 st.header("💼 Job Search Websites" if st.session_state["language"] == "English" else "💼 Sitios web de búsqueda de empleo")
 st.markdown("""
 - [Indeed - Atlanta Jobs](https://www.indeed.com/q-Atlanta-jobs.html) – Search for jobs in Atlanta.
