@@ -100,7 +100,7 @@ st.markdown('<div class="banner-container">', unsafe_allow_html=True)
 st.markdown(
     f"""
     <div class="banner-container">
-        <img src="https://www.talently.ai/wp-content/uploads/2022/06/talently-latam.jpg" class="banner-image">
+        <img src="https://www.morganlewis.com/-/media/images/supplemental/we-are-ml/2021/oct---hispanic-heritage-month/abstraction-floral_1166067862_edit_largetile.jpg?rev=baf85c15d2ee4c07898c4170b6ac85d7&hash=A7A8AE243E1D45BA0C4A6D462D25182C">
         <div class="banner-text">
             {"🔹 Job & Career Help <br> Here you can find job resources, resume assistance, and training programs." if st.session_state["language"] == "English" else "🔹 Ayuda para el empleo <br> Aquí puedes encontrar recursos laborales, asistencia con currículums y programas de capacitación."}
         </div>
