@@ -59,12 +59,26 @@ st.markdown("""
             width: 100%;
             text-align: center;
             margin-bottom: 20px;
+            position: relative;
         }
         .banner-image {
             width: 100%;
-            height: 250px;
+            height: 150px;
             object-fit: cover;
             border-radius: 0;
+        }
+        .welcome-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            background: rgba(0, 0, 0, 0.4);
+            padding: 10px 20px;
+            border-radius: 10px;
         }
     </style>
 """, unsafe_allow_html=True)
@@ -99,14 +113,17 @@ with col5:
 
 st.markdown('</div>', unsafe_allow_html=True)
 
-# ✅ Banner Image Below Navigation
+# ✅ Banner Image with Welcome Text Overlay
 st.markdown('<div class="banner-container">', unsafe_allow_html=True)
-st.image(
-    "https://www.morganlewis.com/-/media/images/supplemental/we-are-ml/2021/oct---hispanic-heritage-month/abstraction-floral_1166067862_edit_largetile.jpg?rev=baf85c15d2ee4c07898c4170b6ac85d7&hash=A7A8AE243E1D45BA0C4A6D462D25182C",
-    use_container_width=True
+st.markdown(
+    f"""
+    <div class="banner-container">
+        <img src="https://www.morganlewis.com/-/media/images/supplemental/we-are-ml/2021/oct---hispanic-heritage-month/abstraction-floral_1166067862_edit_largetile.jpg?rev=baf85c15d2ee4c07898c4170b6ac85d7&hash=A7A8AE243E1D45BA0C4A6D462D25182C" class="banner-image">
+        <div class="welcome-text">
+            {"Welcome! This website provides free resources for jobs, education, and legal support for Hispanic immigrants in Atlanta." if st.session_state["language"] == "English" else "¡Bienvenido! Este sitio web proporciona recursos gratuitos para empleo, educación y apoyo legal para inmigrantes hispanos en Atlanta."}
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True
 )
-st.markdown('</div>', unsafe_allow_html=True)
 
-# ✅ Main Content Below the Image
-st.write("Welcome! This website provides free resources for jobs, education, and legal support for Hispanic immigrants in Atlanta." if st.session_state["language"] == "English" else
-         "¡Bienvenido! Este sitio web proporciona recursos gratuitos para empleo, educación y apoyo legal para inmigrantes hispanos en Atlanta.")
