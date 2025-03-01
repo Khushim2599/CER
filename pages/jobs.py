@@ -43,14 +43,14 @@ st.markdown("""
         }
         .banner-container {
             width: 100%;
-            height: 120px;
+            height: 250px; /* Increased height */
             position: relative;
             overflow: hidden;
             margin-bottom: 20px;
         }
         .banner-image {
             width: 100%;
-            height: 120px;
+            height: 100%;
             object-fit: cover;
             border-radius: 0;
         }
@@ -59,14 +59,15 @@ st.markdown("""
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 20px;
+            font-size: 24px;
             font-weight: bold;
             color: white;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
             background: rgba(0, 0, 0, 0.5);
-            padding: 8px 15px;
+            padding: 12px 20px;
             border-radius: 10px;
             text-align: center;
+            width: 80%;
         }
     </style>
 """, unsafe_allow_html=True)
@@ -97,12 +98,12 @@ with col5:
 
 st.markdown('</div>', unsafe_allow_html=True)
 
-# ✅ Banner Image with Text Overlay
+# ✅ Bigger Banner Image with Text Overlay
 st.markdown('<div class="banner-container">', unsafe_allow_html=True)
 st.markdown(
     f"""
     <div class="banner-container">
-        <img src="https://www.morganlewis.com/-/media/images/supplemental/we-are-ml/2021/oct---hispanic-heritage-month/abstraction-floral_1166067862_edit_largetile.jpg?rev=baf85c15d2ee4c07898c4170b6ac85d7&hash=A7A8AE243E1D45BA0C4A6D462D25182C">
+        <img src="https://www.morganlewis.com/-/media/images/supplemental/we-are-ml/2021/oct---hispanic-heritage-month/abstraction-floral_1166067862_edit_largetile.jpg?rev=baf85c15d2ee4c07898c4170b6ac85d7&hash=A7A8AE243E1D45BA0C4A6D462D25182C" class="banner-image">
         <div class="banner-text">
             {"🔹 Job & Career Help <br> Find job resources, resume assistance, and training programs." if st.session_state["language"] == "English" else "🔹 Ayuda para el empleo <br> Encuentra recursos laborales, asistencia con currículums y programas de capacitación."}
         </div>
